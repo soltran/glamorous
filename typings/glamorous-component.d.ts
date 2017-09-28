@@ -1,6 +1,6 @@
 import {CSSProperties} from './css-properties'
 
-import {Component} from './glamorous'
+import {Component, GlamorousOptions} from './glamorous';
 
 import {Omit} from './helpers'
 
@@ -37,6 +37,13 @@ export interface GlamorousComponentFunctions<ExternalProps, Props> {
    */
   withProps: <DefaultProps extends object>(
     props: DefaultProps,
+  ) => GlamorousComponent<ExternalProps & Partial<DefaultProps>, Props>
+
+  /**
+   * Primarily for tooling, applies config for a component
+   */
+  withConfig: <Context = object, DefaultProps extends object = object>(
+    config: Partial<GlamorousOptions<Props, Context, DefaultProps>>
   ) => GlamorousComponent<ExternalProps & Partial<DefaultProps>, Props>
 }
 
